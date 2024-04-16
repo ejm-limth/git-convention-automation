@@ -1,1 +1,1 @@
-- git hook test
+- git hook test2
