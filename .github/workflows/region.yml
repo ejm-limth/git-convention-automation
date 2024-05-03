@@ -1,0 +1,21 @@
+name: region
+
+on: push
+
+jobs:
+  region:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get variables
+        id: extract
+        uses: ./.github/actions/get-variables
+        with:
+          env: dev
+          region: tha
+
+      - name: Echo variables
+        run: |
+          echo lang: "${{ steps.extract.outputs.lang }}"
+          echo service: "${{ steps.extract.outputs.service }}"
