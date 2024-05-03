@@ -9,30 +9,39 @@ inputs:
 
 outputs:
   lang:
-    value: ${{ steps.extract.outputs.lang }}
+    description: "First value"
   service:
-    value: ${{ steps.extract.outputs.service }}
+    description: "Second value"
 
 runs:
-  using: "composite"
-  steps:
-    - id: extract
-      shell: bash
-      run: |
-        if [ "${{ inputs.env }}" == "dev" ]; then
-          if [ "${{ inputs.region }}" == "kor" ]; then
-            echo "lang=한국어(dev)" >> $GITHUB_OUTPUT
-            echo "service=서비스(dev)" >> $GITHUB_OUTPUT
-          elif [ "${{ inputs.region }}" == "tha" ]; then
-            echo "lang=ภาษาไทย(dev)" >> $GITHUB_OUTPUT
-            echo "service=Service(dev)" >> $GITHUB_OUTPUT
-          fi
-        elif [ "${{ inputs.env }}" == "prod" ]; then
-          if [ "${{ inputs.region }}" == "kor" ]; then
-            echo "lang=한국어(prod)" >> $GITHUB_OUTPUT
-            echo "service=서비스(prod)" >> $GITHUB_OUTPUT
-          elif [ "${{ inputs.region }}" == "tha" ]; then
-            echo "lang=ภาษาไทย(prod)" >> $GITHUB_OUTPUT
-            echo "service=Service(prod)" >> $GITHUB_OUTPUT
-          fi
-        fi
+  using: "node16"
+  main: "action.js"
+# outputs:
+# lang:
+#   value: ${{ steps.extract.outputs.lang }}
+# service:
+#   value: ${{ steps.extract.outputs.service }}
+
+# runs:
+#   using: "composite"
+#   steps:
+#     - id: extract
+#       shell: bash
+#       run: |
+#         if [ "${{ inputs.env }}" == "dev" ]; then
+#           if [ "${{ inputs.region }}" == "kor" ]; then
+#             echo "lang=한국어(dev)" >> $GITHUB_OUTPUT
+#             echo "service=서비스(dev)" >> $GITHUB_OUTPUT
+#           elif [ "${{ inputs.region }}" == "tha" ]; then
+#             echo "lang=ภาษาไทย(dev)" >> $GITHUB_OUTPUT
+#             echo "service=Service(dev)" >> $GITHUB_OUTPUT
+#           fi
+#         elif [ "${{ inputs.env }}" == "prod" ]; then
+#           if [ "${{ inputs.region }}" == "kor" ]; then
+#             echo "lang=한국어(prod)" >> $GITHUB_OUTPUT
+#             echo "service=서비스(prod)" >> $GITHUB_OUTPUT
+#           elif [ "${{ inputs.region }}" == "tha" ]; then
+#             echo "lang=ภาษาไทย(prod)" >> $GITHUB_OUTPUT
+#             echo "service=Service(prod)" >> $GITHUB_OUTPUT
+#           fi
+#         fi
