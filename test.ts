@@ -9,4 +9,4 @@ console.log("Design ");
 console.log("Add ");
 console.log("Rename ");
 console.log("Remove ");
-console.log("Clean");
+console.log("Clean ");
